@@ -1,8 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 // src/components/Services.tsx
 import { SiteConfig } from '@/lib/types';
 
 function ServiceIcon({ name }: { name: string }) {
-  // Constrains your custom logos neatly to fit perfectly inside the dark frames
   const imgClass = "w-8 h-8 object-contain transition-transform duration-300 group-hover:scale-110 select-none pointer-events-none";
   
   switch (name) {
@@ -33,17 +33,12 @@ export default function Services({ config }: { config: SiteConfig }) {
               key={service.id} 
               className="p-6 flex flex-col items-center text-center group hover:bg-black/20 transition-all duration-300"
             >
-              {/* Logo Frame Container */}
               <div className="w-14 h-14 flex items-center justify-center mb-4 rounded-xl bg-gray-900/60 border border-gray-800/50 group-hover:border-[#00A3FF]/40 group-hover:bg-blue-500/5 transition-all duration-300">
                 <ServiceIcon name={service.icon} />
               </div>
-              
-              {/* Program Header Text */}
               <h3 className="text-xs font-black tracking-widest uppercase text-gray-200 group-hover:text-white transition-colors">
                 {service.name}
               </h3>
-              
-              {/* Extracted Site Content Description */}
               <p className="mt-2 text-[11px] text-gray-500 leading-relaxed font-medium max-w-[160px]">
                 {service.description}
               </p>
