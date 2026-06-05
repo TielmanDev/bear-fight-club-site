@@ -4,16 +4,10 @@
 import { useState } from 'react';
 import { SiteConfig } from '@/lib/types';
 
-interface NavigationProps {
-  config: SiteConfig;
-}
-
-export default function Navigation({ config }: NavigationProps) {
+export default function Navigation({ config }: { config: SiteConfig }) {
   const [isOpen, setIsOpen] = useState(false);
-
-  // Smooth scroll helper for single-page application jumping
+  
   const handleScroll = (id: string) => {
-    setIsOpen(false);
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -21,103 +15,78 @@ export default function Navigation({ config }: NavigationProps) {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
+    <nav className="sticky top-0 z-50 bg-[#0B0F17]/90 backdrop-blur-md border-b border-gray-800/60 text-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
           
-          {/* Logo / Business Name */}
+          {/* Logo Brand Graphic Asset Integration */}
           <div className="flex-shrink-0 flex items-center">
-            <span className="text-xl font-black tracking-tight text-gray-900 cursor-pointer" onClick={() => handleScroll('hero')}>
-              {config.businessName}
-            </span>
+            <div 
+              className="flex items-center space-x-3 cursor-pointer select-none"
+              onClick={() => handleScroll('hero')}
+            >
+              {config.logoUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img 
+                  src={config.logoUrl} 
+                  alt={`${config.fullName} Logo`} 
+                  className="h-10 w-auto object-contain select-none pointer-events-none"
+                  onError={(e) => {
+                    // Hidden if asset completely missing, falling back automatically to clean typography
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
+              ) : null}
+              
+              <span className="text-2xl font-black tracking-wider text-white uppercase font-sans">
+                {config.businessName}
+              </span>
+            </div>
           </div>
 
-          {/* Desktop Menu Links */}
+          {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            {config.sections.services && (
-              <button onClick={() => handleScroll('services')} className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
-                Services
-              </button>
-            )}
-            {config.sections.about && (
-              <button onClick={() => handleScroll('about')} className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
-                About
-              </button>
-            )}
-            {config.sections.team && (
-              <button onClick={() => handleScroll('team')} className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
-                Our Team
-              </button>
-            )}
-            {config.sections.testimonials && (
-              <button onClick={() => handleScroll('testimonials')} className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
-                Testimonials
-              </button>
-            )}
-            
-            {/* Dynamic CTA Button */}
-            <a
-              href={`mailto:${config.email}`}
-              style={{ backgroundColor: config.primaryColor }}
-              className="inline-flex items-center justify-center px-5 py-2.5 border border-transparent text-sm font-bold rounded-lg text-white shadow-sm hover:opacity-90 transition-all transform active:scale-95"
+            <button 
+              onClick={() => handleScroll('about')} 
+              className="text-sm font-semibold text-gray-300 hover:text-white transition-colors cursor-pointer"
             >
-              {config.ctaPrimary}
+              About Us
+            </button>
+            <button 
+              onClick={() => handleScroll('services')} 
+              className="text-sm font-semibold text-gray-300 hover:text-white transition-colors cursor-pointer"
+            >
+              Classes
+            </button>
+            <button 
+              onClick={() => handleScroll('schedule')} 
+              className="text-sm font-semibold text-gray-300 hover:text-white transition-colors cursor-pointer"
+            >
+              Schedule
+            </button>
+            <button 
+              onClick={() => handleScroll('team')} 
+              className="text-sm font-semibold text-gray-300 hover:text-white transition-colors cursor-pointer"
+            >
+              Instructors
+            </button>
+            <button 
+              onClick={() => handleScroll('schedule')} 
+              className="text-sm font-semibold text-gray-300 hover:text-white transition-colors cursor-pointer"
+            >
+              Pricing
+            </button>
+            <a 
+              href={`mailto:${config.email}`} 
+              style={{ backgroundColor: config.primaryColor }} 
+              className="px-6 py-2.5 text-sm font-black rounded-md text-white shadow-lg shadow-blue-500/20 hover:opacity-90 transition-all text-center"
+            >
+              CONTACT
             </a>
           </div>
 
-          {/* Mobile Hamburger Button */}
-          <div className="flex items-center md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none"
-              aria-label="Toggle Menu"
-            >
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                {isOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-          </div>
         </div>
       </div>
-
-      {/* Mobile Drawer Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-6 space-y-3 shadow-inner">
-          {config.sections.services && (
-            <button onClick={() => handleScroll('services')} className="block w-full text-left py-2 text-base font-medium text-gray-600 hover:text-gray-900">
-              Services
-            </button>
-          )}
-          {config.sections.about && (
-            <button onClick={() => handleScroll('about')} className="block w-full text-left py-2 text-base font-medium text-gray-600 hover:text-gray-900">
-              About
-            </button>
-          )}
-          {config.sections.team && (
-            <button onClick={() => handleScroll('team')} className="block w-full text-left py-2 text-base font-medium text-gray-600 hover:text-gray-900">
-              Our Team
-            </button>
-          )}
-          {config.sections.testimonials && (
-            <button onClick={() => handleScroll('testimonials')} className="block w-full text-left py-2 text-base font-medium text-gray-600 hover:text-gray-900">
-              Testimonials
-            </button>
-          )}
-          <div className="pt-2">
-            <a
-              href={`mailto:${config.email}`}
-              style={{ backgroundColor: config.primaryColor }}
-              className="block w-full text-center px-4 py-3 border border-transparent text-base font-bold rounded-lg text-white shadow-sm"
-            >
-              {config.ctaPrimary}
-            </a>
-          </div>
-        </div>
-      )}
     </nav>
   );
 }

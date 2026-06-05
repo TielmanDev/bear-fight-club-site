@@ -4,23 +4,21 @@ import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import About from '@/components/About';
-import Team from '@/components/Team';
-import Testimonials from '@/components/Testimonials';
+import ScheduleAndPricing from '@/components/ScheduleAndPricing';
+import Team from '@/components/Team'; // ⚠️ RENDER MOUNT DIRECTIVE
 import ContactForm from '@/components/ContactForm';
-import CTA from '@/components/CTA';
 import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-50 text-gray-900 antialiased selection:bg-blue-500 selection:text-white">
+    <main className="min-h-screen bg-[#07090E] text-white antialiased selection:bg-[#00A3FF] selection:text-white">
       <Navigation config={siteConfig} />
       <Hero config={siteConfig} />
       <Services config={siteConfig} />
+      <ScheduleAndPricing config={siteConfig} />
+      <Team config={siteConfig} /> {/* ⚠️ POSITIONED SEAMLESSLY BELOW TIMETABLES */}
       <About config={siteConfig} />
-      <Team config={siteConfig} />
-      <Testimonials config={siteConfig} />
       <ContactForm config={siteConfig} />
-      <CTA config={siteConfig} />
       <Footer config={siteConfig} />
     </main>
   );
