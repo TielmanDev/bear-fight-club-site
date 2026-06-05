@@ -1,4 +1,3 @@
-# .github/workflows/deploy.yml
 name: Deploy Next.js Site to Pages
 
 on:
@@ -18,13 +17,12 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps: deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }} # ⚠️ FIXED: Changed 'steps:' to 'steps.'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ⚠️ THE FIX IS RIGHT HERE: Change node-version to 20
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
