@@ -1,4 +1,3 @@
-// src/lib/config.ts
 import { SiteConfig } from './types';
 
 export const siteConfig: SiteConfig & { [key: string]: any } = {
@@ -13,14 +12,14 @@ export const siteConfig: SiteConfig & { [key: string]: any } = {
   googleMapsUrl: "https://maps.google.com/?q=George+Western+Cape",
 
   primaryColor: "#00A3FF", 
-  logoUrl: "/images/bfc-logo.png",
-  heroImage: "/images/hero-fighter.png",
+  logoUrl: "images/bfc-logo.png",
+  heroImage: "images/hero-fighter.png",
   metaDescription: "Bear Fight Club Academy in George offers classes in Wrestling, Jiu-Jitsu, Boxing and MMA.",
 
   sections: {
     services: true,
     about: true,
-    team: true, // ⚠️ TURNED ON FOR THE INSTRUCTORS DISPLAY
+    team: true,
     testimonials: false,
   },
 
@@ -38,21 +37,20 @@ export const siteConfig: SiteConfig & { [key: string]: any } = {
     values: ["Kids Classes (Ages 4+)", "Group Fitness", "Personal 1 on 1 Training", "Sports Conditioning"],
   },
 
-  // Generic, highly applicable team profiles matching your asset files and site context
   team: [
     { 
       id: "john-doe", 
       name: "John Doe", 
       title: "Head MMA & Wrestling Coach", 
       bio: "Leads the senior and high school mixed martial arts fighters. Specializes in wrestling takedowns, striking combinations, and competition training.", 
-      image: "/images/JohnDoe.png" 
+      image: "images/JohnDoe.png" 
     },
     { 
       id: "jane-doe", 
       name: "Jane Doe", 
       title: "BJJ & Kids Program Lead", 
       bio: "Coordinates the youth grappling academies. Specializes in Brazilian Jiu-Jitsu technique, group fitness, and building character in kids ages 4 and up.", 
-      image: "/images/JaneDoe.png" 
+      image: "images/JaneDoe.png" 
     }
   ],
 

@@ -2,16 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'export',
+  // Safely applies the subfolder path ONLY on GitHub production builds, leaving your desktop perfectly clean
+  basePath: process.env.NODE_ENV === 'production' ? '/bear-fight-club-site' : undefined,
   images: {
     unoptimized: true,
-  },
-  typescript: {
-    // ⚠️ FORCES THE COMPILER TO FINISH SEAMLESSLY EVEN WITH STRICT TYPE WARNINGS
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    // ⚠️ PREVENTS FORMATTING/STYLE LINT WARNINGS FROM KILLING THE DEPLOYMENT
-    ignoreDuringBuilds: true,
   },
 };
 

@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-// src/components/Services.tsx
 import { SiteConfig } from '@/lib/types';
 
 function ServiceIcon({ name }: { name: string }) {
@@ -7,15 +6,15 @@ function ServiceIcon({ name }: { name: string }) {
   
   switch (name) {
     case 'boxing':
-      return <img src="/images/Boxing.png" alt="Boxing Icon" className={imgClass} />;
+      return <img src="images/Boxing.png" alt="Boxing Icon" className={imgClass} />;
     case 'wrestling':
-      return <img src="/images/Wrestling.png" alt="Wrestling Icon" className={imgClass} />;
+      return <img src="images/Wrestling.png" alt="Wrestling Icon" className={imgClass} />;
     case 'bjj':
-      return <img src="/images/BJJ.png" alt="BJJ Icon" className={imgClass} />;
+      return <img src="images/BJJ.png" alt="BJJ Icon" className={imgClass} />;
     case 'mma':
-      return <img src="/images/MMA.png" alt="MMA Icon" className={imgClass} />;
+      return <img src="images/MMA.png" alt="MMA Icon" className={imgClass} />;
     case 'strength':
-      return <img src="/images/Strentg.png" alt="Strength Icon" className={imgClass} />;
+      return <img src="images/Strentg.png" alt="Strength Icon" className={imgClass} />;
     default:
       return <span className="text-gray-500 text-lg">★</span>;
   }
